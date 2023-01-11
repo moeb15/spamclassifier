@@ -13,7 +13,6 @@ def make_predictions(filename=None):
     filename: String, file path of csv file containing emails, must contain EmailText Column,
     if Label included, classification report will also be created
     """
-    cl_report = None
     emails = pd.read_csv(filename)
     X = emails[ref_col]
     
@@ -22,11 +21,10 @@ def make_predictions(filename=None):
 
     if target in list(emails.columns):
         y = emails[target]
-        cl_report = helpers.get_report(model, X, y, vectorizer)
+        helpers.get_report(model, X, y, vectorizer)
     
-    return pred, cl_report
+    return pred
     
 if __name__ == '__main__':
-    pred, report = make_predictions(filepath)
+    pred = make_predictions(filepath)
     print(pred)
-    print(report)
