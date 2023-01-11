@@ -27,4 +27,6 @@ def make_predictions(filename=None):
     return pred, cl_report
     
 if __name__ == '__main__':
-    make_predictions(filepath)
+    pred, report = make_predictions(filepath)
+    print(pred)
+    print(report)
