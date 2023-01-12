@@ -2,9 +2,14 @@ import helpers
 import pandas as pd
 import joblib
 import sys
+import os
+import uuid
 
 model, ref_col, target, vectorizer, tfid = joblib.load('models/model.pkl')
 filepath = sys.argv[1]
+
+if not os.path.exists('figures'):
+    os.makedirs('figures')
 
 def make_predictions(filename=None):
     """
@@ -22,6 +27,7 @@ def make_predictions(filename=None):
     if target in list(emails.columns):
         y = emails[target]
         helpers.get_report(model, X, y, vectorizer)
+        helpers.generate_cnf_mtx(model, X, y, vectorizer,f'{uuid.uuid1()}')
     
     return pred
     
