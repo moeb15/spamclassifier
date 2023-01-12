@@ -16,7 +16,8 @@ def make_predictions(filename=None):
     Classifies emails as spam or ham
     Parameters
     filename: String, file path of csv file containing emails, must contain EmailText Column,
-    if Label included, classification report will also be created
+    if Label column included, classification report and graphical representation of 
+    confusion matrix will also be created, the graph will be saved in the figures directory
     """
     emails = pd.read_csv(filename)
     X = emails[ref_col]
